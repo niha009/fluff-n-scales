@@ -1,0 +1,95 @@
+
+{% extends "catalog/base.html" %}
+
+{% block content %}
+ <style>
+  body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    margin: 0;
+  }
+  .login {
+   margin-top: -100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  form {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 330px;
+  }
+  input[type="text"],
+  input[type="password"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 230px;
+  }
+  input[type="submit"] {
+    background-color: #4d90fe;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px;
+    width: 325px;
+  }
+  input[type="submit"]:hover {
+    background-color: #357ae8;
+  }
+  p {
+    margin-top: 20px;
+  }
+  a {
+    color: blue;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+
+ {% if form.errors %}
+ <p>Your username and password didn't match. Please try again.</p>
+ {% endif %}
+ {% if next %}
+ {% if user.is_authenticated %}
+ <p>Your account doesn't have access to this page. To proceed,
+ please login with an account that has access.</p>
+ {% else %}
+ <p>Please login to see this page.</p>
+ {% endif %}
+ {% endif %}
+<div class="login" >
+ <form method="post" action="{% url 'login' %}">
+ {% csrf_token %}
+ <table>
+ <tr>
+ <td>  {{ form.username.label_tag }}</td>
+ <td>{{ form.username }}</td>
+ </tr>
+ <tr>
+ <td>  {{ form.password.label_tag }}</td>
+ <td>{{ form.password }}</td>
+ </tr>
+ </table>
+ <input type="submit" value="login">
+ <input type="hidden" name="next" value="{{ next }}">
+ <p><strong>Don't have an account?</strong>
+ <a href="{% url 'register' %}"> Sign Up Now</a>
+ </p>
+ </form>
+
+{% endblock %}
+</div>

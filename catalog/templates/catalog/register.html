@@ -1,0 +1,120 @@
+
+{% extends "catalog/base.html" %}
+{% block title %}Create an Account{% endblock %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+
+<style>
+ /* Center the content */
+ body{
+  background-color: white;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    margin: 0;
+ }
+.form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+/* Style the heading */
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+
+/* Style the form */
+form {
+  width: 50%;
+  margin: auto;
+ text-align: center;
+}
+
+/* Style the form fields */
+input[type="text"]{
+  width: 250px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+
+}
+input[type="email"]{
+  width: 250px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+
+}
+input[type="password"] {
+  width: 250px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  box-shadow: 0px 0px 5px #4d90fe;
+}
+
+/* Style the form button */
+button[type="submit"] {
+  width: 150px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4d90fe;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #357ae8;
+}
+
+/* Style the login link */
+p {
+  margin-top: 20px;
+  text-align: center;
+}
+
+a {
+  color: #4d90fe;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+ul{
+ text-align: left;
+}
+
+</style>
+ <form method="POST" class="form-group">
+ {% csrf_token %}
+ {{ form|crispy }}
+ <button type="submit" class="btn btn-success">Register</button>
+ </form>
+ <p><strong>Already have an account?</strong>
+ <a href="{% url 'login' %}"> Login Now</a>
+ </p>
+{% endblock %}
+</html>

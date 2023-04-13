@@ -1,0 +1,56 @@
+{% extends 'catalog/base.html' %}
+{% load static %}
+{% block content %}
+    <style>
+   *{
+  text-align: center;
+
+}
+
+body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1{
+  color: orange;
+  margin-bottom: 8px;
+  font-size: 60px;
+}
+h2{
+  font-size: 35px;
+  color: blue;
+  padding: 2px;
+}
+p{
+  font-size: 25px;
+  margin-bottom: 2px;
+}
+.dog1{
+  height: 350px;
+  width: auto;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.dog2{
+  height: 350px;
+  width: auto;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 0;
+}
+
+    </style>
+<div class="welcome" style="text-align: left;font-size: 25px;">
+    {% if user.is_authenticated %}
+        Welcome, {{ user.first_name }} {{ user.last_name }}
+    {% endif %}
+</div>
+<h1>Fluff N' Scales</h1>
+<h2>We Love Animals!</h2>
+{% load static %}
+<img class ="dog1" src="{% static 'dog1.jpg' %}">
+
+<img class ="dog2" src="{% static 'dog2.jpg' %}">
+<br>
+
+{% endblock %}

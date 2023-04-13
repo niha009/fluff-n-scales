@@ -1,0 +1,109 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<link rel="icon" href="static/Rectangle 41 (2).png" type="image/x-icon" />
+
+ <title>{% block title %}Fluff n Scales{% endblock %}</title>
+</head>
+<body>
+<nav>
+  <ul class="left-menu">
+    <li {% if request.resolver_match.view_name == 'index' %}class="active"{% endif %}>
+      <a href="{% url 'index' %}"><i class="fas fa-paw"></i> Fluff N' Scales</a>
+    </li>
+
+     <li {% if request.resolver_match.view_name == 'pet_create' %}class="active"{% endif %}>
+        <a class="nav-link" href="{% url 'pet_create' %}"><i class="fas fa-plus-circle"></i> New Post</a>
+      </li>
+      <li {% if request.resolver_match.view_name == 'pet_image_list' %}class="active"{% endif %}>
+        <a class="nav-link" href="{% url 'pet_image_list' %}"><i class="fas fa-images"></i> Feed</a>
+      </li>
+      </ul>
+  <ul class="right-menu">
+    {% if user.is_authenticated %}
+
+      <li {% if request.resolver_match.view_name == 'logout' %}class="active"{% endif %}>
+        <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> {{ user.username }} Logout</a>
+      </li>
+    {% else %}
+      <li {% if request.resolver_match.view_name == 'login' %}class="active"{% endif %}>
+        <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+      </li>
+      <li {% if request.resolver_match.view_name == 'register' %}class="active"{% endif %}>
+        <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Sign Up</a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>
+
+
+<div class="container1" >
+ <br/>
+ {% block content %}
+ {% endblock %}
+</div>
+
+</body>
+<style>
+body{
+margin:0;
+ font-family: Arial, Helvetica, sans-serif;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color:blue;
+
+}
+
+nav ul.left-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav ul.right-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+nav li {
+  margin: 0 10px;
+  float: left;
+
+}
+
+nav li.active {
+  background-color: darkblue;
+}
+
+nav li a {
+  display: block;
+  color:white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav li a:hover {
+  background-color:#357ae8;
+}
+
+.fa {
+  margin-right: 5px;
+}
+
+.container1 {
+
+
+}
+
+</style>
+</html>
